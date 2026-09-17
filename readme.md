@@ -1,32 +1,60 @@
-# Stars block
+# 🖥️ QA & UI Layout: Rating Stars Component - Pixel-Perfect Validation
 
-Implement the [Stars Block](https://www.figma.com/file/ojkArVazq7vsX0nbpn9CxZ/Moyo-%2F-Catalog-(ENG)?node-id=11325%3A2960&mode=dev) used in a card and catalog.
-Follow
+> ### A frontend layout project focusing on state-based UI testing, strict BEM architecture, and component isolation.
 
-> Here are the [Layout Tasks Instructions](https://mate-academy.github.io/layout_task-guideline)
+This repository demonstrates the ability to translate strict UI/UX design specifications into semantic, production-ready HTML/CSS. 
 
-## Requirements:
-- Reset browser's default `margin`
-- Add 6 `stars` blocks with 5 `stars__star` elements each.
-- Add `stars--0`, `stars--1`, `stars--2` ... `stars--5` modifiers to the blocks one per each
-- Don't add any other classes to the elements.
-- The block with `stars--N` modifier should have exactly `N` first stars active.
-- use `background-image` for stars (see `images` folder). Don't use `<img>` or `<svg>` tags.
-- The star size and the distance should be taken from Figma
-- Use `display: flex` for the `stars` block to avoid an issue with extra spaces between individual stars
-- Don't add vertical margins between blocks.
-- DON'T use `gap` property for `flex` container because it does not work in tests
+More importantly from a Quality Assurance perspective, it showcases how to build DOM structures using scalable naming conventions (BEM) that are highly predictable and optimized for automated End-to-End (E2E) testing frameworks.
 
-## Checklist
+---
 
-❗️ Replace `<your_account>` with your Github username and copy the links to `Pull Request` description:
+## 🌐 Live Demo & QA Reports
 
-- [DEMO LINK](https://<your_account>.github.io/layout_stars/)
-- [TEST REPORT LINK](https://<your_account>.github.io/layout_stars/report/html_report/)
+- **[Live Application Demo](https://webdevnikfull.github.io/layout_stars/)**
+- **[Automated Test HTML Report](https://webdevnikfull.github.io/layout_stars/report/html_report/)**
 
-❗️ Copy this `Checklist` to the `Pull Request` description after links, and put `- [x]` before each point after you checked it.
+---
 
-- [ ] Yellow stars are added with container modifier + pseudo-selector (NO extra classes)
-- [ ] Each BEM block has its own separate file
-- [ ] All `Typical Mistakes` from `BEM` lesson theory are checked.
-- [ ] Code follows all the [Code Style Rules ❗️](./checklist.md)
+## 🧪 QA Focus: Design for Testability
+
+Writing testable UI code is a critical skill for modern automation. This component was developed with specific constraints to ensure stability in headless browser testing environments:
+
+### 1. State-Driven Test Locators (BEM Modifiers)
+Relying on complex CSS selectors for automation leads to flaky tests. To ensure robust E2E test scripts, the component states are strictly controlled by BEM modifiers (`stars--0` through `stars--5`).
+- **QA Advantage:** A test script can easily validate the correct rendering of a 3-star rating by simply asserting `expect(element).toHaveClass('stars--3')`, without needing to count individual child nodes.
+
+### 2. Test Runner Compatibility Constraints
+Modern CSS features sometimes conflict with older or specific headless test runners. 
+- **Constraint Handled:** The CSS Flexbox `gap` property was intentionally avoided for spacing the stars, as it lacks support in certain automated testing pipelines. Standard margins/paddings within flex containers were strategically used instead to ensure 100% test compatibility.
+
+### 3. Visual Regression & Component Isolation
+The UI component was coded to exactly match the Figma design (Pixel-Perfect), providing a strict baseline for Visual Regression Testing tools. Each BEM block is isolated in its own file, ensuring that layout adjustments do not cause regressions in global styles.
+
+---
+
+## 🎯 UI / UX Specifications (System Under Test)
+
+The stars component adheres to the following strict layout and styling rules:
+
+- **Component States:** Implements 6 distinct instances of the rating block, displaying scores from 0 to 5.
+- **Strict Modifier Logic:** The dynamic highlighting of active (yellow) stars is handled purely via CSS parent modifiers combined with pseudo-selectors, keeping the DOM extremely clean and free of unnecessary utility classes.
+- **Asset Handling:** Stars are rendered using CSS `background-image` rather than inline `<img>` or `<svg>` tags, separating content from decorative layout elements.
+- **Flexible Layout:** Built with `display: flex` to resolve inline-block spacing anomalies, ensuring pixel-perfect alignment according to Figma specifications.
+- **Reset Standards:** Browser default margins were completely reset to ensure consistent cross-browser rendering during automated tests.
+
+---
+
+## 🧰 Tech Stack
+
+- **Markup:** Semantic HTML5
+- **Styling:** CSS3 (Flexbox, BEM Methodology, Background-Images)
+- **Design Source:** Figma Mockups
+- **Testing Approach:** Pixel-Perfect Validation, Automated DOM Testing compatibility
+
+---
+
+## ⚙️ Local Development
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/webdevnikfull/layout_stars.git](https://github.com/webdevnikfull/layout_stars.git)
