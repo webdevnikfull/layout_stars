@@ -1,60 +1,42 @@
-# 🖥️ QA & UI Layout: Rating Stars Component - Pixel-Perfect Validation
+# 🧪 QA Portfolio: Interactive Star Rating & Visual Testing
 
-> ### A frontend layout project focusing on state-based UI testing, strict BEM architecture, and component isolation.
+> **About this repository:** This project features an interactive star rating component accompanied by a robust QA setup. It showcases expertise in **Visual Regression Testing** for dynamic UI components and strict architectural enforcement using BEM and CSS linters.
 
-This repository demonstrates the ability to translate strict UI/UX design specifications into semantic, production-ready HTML/CSS. 
+![Visual Testing](https://img.shields.io/badge/-Visual_Regression-FF4081?style=for-the-badge&logo=applitools&logoColor=white)
+![CSS3 & BEM](https://img.shields.io/badge/-BEM_Methodology-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![ESLint](https://img.shields.io/badge/-Static_Analysis-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/-CI/CD-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 
-More importantly from a Quality Assurance perspective, it showcases how to build DOM structures using scalable naming conventions (BEM) that are highly predictable and optimized for automated End-to-End (E2E) testing frameworks.
+## 🎯 Project Overview
 
----
+The core application is a dynamic star-rating widget (`src/index.html`, `src/images/`). However, the primary focus of this repository is its **Quality Assurance automation pipeline**. 
 
-## 🌐 Live Demo & QA Reports
+As a **QA Automation Engineer**, my objective here is to validate that interactive UI elements render correctly across viewports and remain visually stable through automated regression testing.
 
-- **[Live Application Demo](https://webdevnikfull.github.io/layout_stars/)**
-- **[Automated Test HTML Report](https://webdevnikfull.github.io/layout_stars/report/html_report/)**
+## 🛠️ QA Tech Stack & Tools
 
----
+* **Visual Regression Testing:** BackstopJS (`backstopConfig.js`)
+* **UI Architecture Validation:** BEM Linter (`.bemlintrc.json`)
+* **Static Code Analysis (Shift-Left QA):** Stylelint, LintHTML, ESLint
+* **CI/CD Pipeline:** GitHub Actions
 
-## 🧪 QA Focus: Design for Testability
+## 📊 Test Strategy & Coverage
 
-Writing testable UI code is a critical skill for modern automation. This component was developed with specific constraints to ensure stability in headless browser testing environments:
+The testing framework targets potential frontend vulnerabilities:
 
-### 1. State-Driven Test Locators (BEM Modifiers)
-Relying on complex CSS selectors for automation leads to flaky tests. To ensure robust E2E test scripts, the component states are strictly controlled by BEM modifiers (`stars--0` through `stars--5`).
-- **QA Advantage:** A test script can easily validate the correct rendering of a 3-star rating by simply asserting `expect(element).toHaveClass('stars--3')`, without needing to count individual child nodes.
+### 1. Visual Regression Validation (BackstopJS)
+Using `backstopConfig.js`, the test suite captures baseline snapshots of the star rating component in various states (default, hovered, active/selected). Any unintended shifting or styling bugs introduced during code modifications are caught automatically.
 
-### 2. Test Runner Compatibility Constraints
-Modern CSS features sometimes conflict with older or specific headless test runners. 
-- **Constraint Handled:** The CSS Flexbox `gap` property was intentionally avoided for spacing the stars, as it lacks support in certain automated testing pipelines. Standard margins/paddings within flex containers were strategically used instead to ensure 100% test compatibility.
+### 2. Architectural & Code Quality Gates
+The repository enforces strict standards via continuous integration (`.github/workflows/test.yml`):
+* **BEM Compliance:** Ensures CSS classes follow the Block Element Modifier convention for high scalability.
+* **Linters:** Automatically checks HTML, CSS, and JS files for syntax, formatting, and structural errors before merge.
 
-### 3. Visual Regression & Component Isolation
-The UI component was coded to exactly match the Figma design (Pixel-Perfect), providing a strict baseline for Visual Regression Testing tools. Each BEM block is isolated in its own file, ensuring that layout adjustments do not cause regressions in global styles.
+## 🚀 How to Run the Tests Locally
 
----
+To evaluate the visual tests and code quality tools on your local machine, follow these steps:
 
-## 🎯 UI / UX Specifications (System Under Test)
-
-The stars component adheres to the following strict layout and styling rules:
-
-- **Component States:** Implements 6 distinct instances of the rating block, displaying scores from 0 to 5.
-- **Strict Modifier Logic:** The dynamic highlighting of active (yellow) stars is handled purely via CSS parent modifiers combined with pseudo-selectors, keeping the DOM extremely clean and free of unnecessary utility classes.
-- **Asset Handling:** Stars are rendered using CSS `background-image` rather than inline `<img>` or `<svg>` tags, separating content from decorative layout elements.
-- **Flexible Layout:** Built with `display: flex` to resolve inline-block spacing anomalies, ensuring pixel-perfect alignment according to Figma specifications.
-- **Reset Standards:** Browser default margins were completely reset to ensure consistent cross-browser rendering during automated tests.
-
----
-
-## 🧰 Tech Stack
-
-- **Markup:** Semantic HTML5
-- **Styling:** CSS3 (Flexbox, BEM Methodology, Background-Images)
-- **Design Source:** Figma Mockups
-- **Testing Approach:** Pixel-Perfect Validation, Automated DOM Testing compatibility
-
----
-
-## ⚙️ Local Development
-
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/webdevnikfull/layout_stars.git](https://github.com/webdevnikfull/layout_stars.git)
+### 1. Environment Setup
+Clone the repository and install the dependencies:
+```bash
+npm install
